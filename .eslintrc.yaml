@@ -1,0 +1,14 @@
+parser: babel-eslint
+extends: airbnb/base
+rules:
+  eqeqeq:
+    - error
+    - allow-null
+  no-unused-expressions:
+    - error
+    - allowShortCircuit: true
+  no-multi-spaces:
+    - error
+    - exceptions:
+        VariableDeclarator: true
+        ImportDeclaration: true
