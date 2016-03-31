@@ -22,7 +22,7 @@ Bla bla bla...
 Bla bla bla...
 ```
 
-And your comments in `./lib/myLib.js` should look like this (note the `--` prefix:
+And your comments in `./lib/myLib.js` should look like this (note the `--` prefix):
 
 ```js
 // -- ## foo()
