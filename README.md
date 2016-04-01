@@ -6,7 +6,7 @@ A simple CLI tool to gather documentation from JS code
 ## Installation
 
 ```
-$ npm install --save extract-docs
+$ npm install --save-dev extract-docs
 ```
 
 
