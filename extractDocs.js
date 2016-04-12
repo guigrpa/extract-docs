@@ -2,7 +2,8 @@
 'use strict';
 
 const fs                    = require('fs');
-const storyboard            = require('storyboard-core');
+const storyboard            = require('storyboard/lib/noPlugins');
+const consoleListener       = require('storyboard/lib/listeners/console');
 const program               = require('commander');
 const packageJson           = require('./package.json');
 
@@ -23,6 +24,8 @@ program
 
 if (program.stdout) {
   storyboard.config({ filter: '-*' });
+} else {
+  storyboard.addListener(consoleListener);
 }
 
 const story = mainStory.child({ src: 'extract-docs', title: 'Extract docs' });
