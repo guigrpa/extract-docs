@@ -34,19 +34,30 @@ function getDocs(srcPath) {
   story.info('extract-docs', `Processing ${chalk.yellow.bold(srcPath)}...`);
   const lines = fs.readFileSync(srcPath, 'utf8').split('\n');
   let fCode = false;
+  let fBlockComment = false;
   let out = '';
-  for (let line of lines) {
-    line = line.trim();
-    if ((!line.length) || (line.indexOf('// --') !== 0)) {
-      if (!fCode) {
-        out += '\n';
-      }
+  for (let line0 of lines) {
+    let line = line0.trim();
+    if (line === '/* --') {
+      fBlockComment = true;
+      continue;
+    }
+
+    // End of comment block
+    if (line === '-- */' ||
+        (!fBlockComment && (!line.length || line.indexOf('// --') !== 0))) {
+      if (!fCode) out += '\n';
       fCode = true;
+      fBlockComment = false;
       continue;
     }
     fCode = false;
-    line = line.slice(6);
-    out += `${line}\n`;
+    if (fBlockComment) {
+      out += `${line0}\n`;
+    } else {
+      line = line.slice(6);
+      out += `${line}\n`;
+    }
   }
   out = out.trim();
   return out;
