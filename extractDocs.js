@@ -36,7 +36,7 @@ function getDocs(srcPath) {
   let fCode = false;
   let fBlockComment = false;
   let out = '';
-  for (let line0 of lines) {
+  for (const line0 of lines) {
     let line = line0.trim();
     if (line === '/* --') {
       fBlockComment = true;
