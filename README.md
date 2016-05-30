@@ -1,4 +1,4 @@
-# extract-docs [![Build Status](https://travis-ci.org/guigrpa/extract-docs.svg)](https://travis-ci.org/guigrpa/extract-docs) [![npm version](https://img.shields.io/npm/v/extract-docs.svg)](https://www.npmjs.com/package/extract-docs)
+# extract-docs [![npm version](https://img.shields.io/npm/v/extract-docs.svg)](https://www.npmjs.com/package/extract-docs)
 
 A simple CLI tool to gather documentation from JS code
 

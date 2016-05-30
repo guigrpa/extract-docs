@@ -3,7 +3,7 @@ import test from 'ava';
 
 test.cb(t => {
   childProcess.execFile(
-    '../extractDocs.js', 
+    '../cli.js', 
     ['--template', 'template.md', '--stdout'],
     { cwd: __dirname }, 
     (err, stdout) => {

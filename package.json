@@ -3,8 +3,9 @@
   "version": "1.1.0",
   "description": "A simple CLI tool to gather documentation from JS code",
   "bin": {
-    "extract-docs": "extractDocs.js"
+    "extract-docs": "cli.js"
   },
+  "main": "extractDocs.js",
   "engines": {
     "node": ">=4"
   },
@@ -24,7 +25,7 @@
   },
   "scripts": {
     "lint": "eslint extractDocs.js",
-    "test": "ava"
+    "test": "echo no tests"
   },
   "dependencies": {
     "commander": "^2.9.0",

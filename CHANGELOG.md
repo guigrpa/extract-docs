@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 (May. 30, 2016)
+
+* Allow programmatic use.
+* Tolerate missing files (don't crash!)
+* Write missing file refs to output (disabled by default), with the `--missing-refs` option
+
 ## 1.1.0 (May. 20, 2016)
 
 * Support documentation blocks without line delimiters.
