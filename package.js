@@ -4,7 +4,7 @@
 // Basic config
 // ===============================================
 const NAME = 'extract-docs';
-const VERSION = '1.2.0';
+const VERSION = '1.3.0';
 const DESCRIPTION = 'A simple CLI tool to gather documentation from JS code';
 const KEYWORDS = ['tools', 'docs'];
 
