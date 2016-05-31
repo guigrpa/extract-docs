@@ -8,7 +8,13 @@ const consoleListener       = require('storyboard/lib/listeners/console');
 const mainStory = storyboard.mainStory;
 const chalk = storyboard.chalk;
 
-module.exports = function({ template: templateFile, stdout, output, missingRefs }) {
+module.exports = function({
+  template: templateFile,
+  stdout, output,
+  missingRefs,
+  skipConditional,
+}) {
+
   if (stdout) {
     storyboard.config({ filter: '-*' });
   } else {
@@ -60,12 +66,18 @@ module.exports = function({ template: templateFile, stdout, output, missingRefs 
   const template = fs.readFileSync(templateFile, 'utf8');
 
   story.info('extract-docs', 'Collecting the pieces...');
-  const segments = template.split(/\[\[\[(.+)\]\]\]/);
+  const segments = template.split(/\[\[\[([\s\S]+?)\]\]\]/m);
   let out = '';
   for (let i = 0; i < segments.length; i++) {
     const segment = segments[i];
     if (i % 2) {
-      out += getDocs(segment);
+      if (segment[0] === '*' || segment[0] === '+') {
+        if (skipConditional) continue;
+        const tmp = segment.slice(1);
+        out += segment[0] === '+' ? getDocs(tmp) : tmp;
+      } else {
+        out += getDocs(segment);
+      }
     } else {
       out += segment;
     }

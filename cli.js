@@ -17,6 +17,7 @@ program
   .option('-o, --output [relativePath]',
     `Save result here [${DEFAULT_OUTPUT}]`, DEFAULT_OUTPUT)
   .option('--missing-refs', 'Write missing file refs')
+  .option('--skip-conditional', 'Skip conditional inserts')
   .parse(process.argv);
 
 extractDocs(program);
