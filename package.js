@@ -1,10 +1,8 @@
-'use strict';
-
 // ===============================================
 // Basic config
 // ===============================================
 const NAME = 'extract-docs';
-const VERSION = '1.3.0';
+const VERSION = '1.4.0';
 const DESCRIPTION = 'A simple CLI tool to gather documentation from JS code';
 const KEYWORDS = ['tools', 'docs'];
 
@@ -40,46 +38,34 @@ const specs = {
   // Scripts
   // -----------------------------------------------
   scripts: {
+    build: 'node package && npm run lint',
     lint: 'eslint extractDocs.js',
-    // test: 'ava',
-    test: 'echo no tests',
   },
 
   // -----------------------------------------------
   // Deps
   // -----------------------------------------------
   dependencies: {
-    storyboard: '^1.1.0',
-    commander: '^2.9.0',
+    chalk: '1.1.3',
+    commander: '2.9.0',
   },
 
   devDependencies: {
-    ava: '^0.13.0',
-    'babel-cli': '^6.6.5',
-    'babel-core': '^6.7.2',
-    'babel-eslint': '^6.0.0',
-    'babel-preset-es2015': '^6.6.0',
-    'babel-preset-stage-2': '^6.5.0',
-    eslint: '^2.4.0',
-    'eslint-config-airbnb': '^6.2.0',
-    'eslint-plugin-react': '^4.2.3',  // so that eslint-config-airbnb doesn't complain
-  },
-
-  // -----------------------------------------------
-  // Other configs
-  // -----------------------------------------------
-  ava: {
-    files: [
-      './test/test.js',
-    ],
-    babel: 'inherit',
+    // Linting
+    eslint: '3.8.1',
+    'eslint-config-airbnb': '12.0.0',
+    'eslint-plugin-flowtype': '2.20.0',
+    'eslint-plugin-import': '1.16.0',
+    'eslint-plugin-jsx-a11y': '2.2.3',
+    'eslint-plugin-react': '6.4.1',
+    'babel-eslint': '7.0.0',
   },
 };
 
 // ===============================================
 // Build package.json
 // ===============================================
-const _sortDeps = deps => {
+const _sortDeps = (deps) => {
   const newDeps = {};
   for (const key of Object.keys(deps).sort()) {
     newDeps[key] = deps[key];

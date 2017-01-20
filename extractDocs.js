@@ -1,35 +1,28 @@
 #!/usr/bin/env node
-'use strict';
 
-const fs                    = require('fs');
-const storyboard            = require('storyboard/lib/noPlugins');
-const consoleListener       = require('storyboard/lib/listeners/console');
+/* eslint-disable no-console */
 
-const mainStory = storyboard.mainStory;
-const chalk = storyboard.chalk;
+const fs = require('fs');
+const chalk = require('chalk');
 
-module.exports = function({
+let fLogs = true;
+const log = (msg) => { if (fLogs) console.log(msg); };
+
+const process = ({
   template: templateFile,
   stdout, output,
   missingRefs,
   skipConditional,
-}) {
-
-  if (stdout) {
-    storyboard.config({ filter: '-*' });
-  } else {
-    storyboard.addListener(consoleListener);
-  }
-
-  const story = mainStory.child({ src: 'extract-docs', title: 'Extract docs' });
+}) => {
+  if (stdout) fLogs = false;
 
   function getDocs(srcPath) {
-    story.info('extract-docs', `Processing ${chalk.yellow.bold(srcPath)}...`);
+    log(`Processing ${chalk.yellow.bold(srcPath)}...`);
     let lines;
     try {
       lines = fs.readFileSync(srcPath, 'utf8').split('\n');
     } catch (err) {
-      story.warn('extract-docs', 'File does not exist');
+      log(chalk.yellow.bold('WARNING: File does not exist'));
       return missingRefs ? `[[[${srcPath}]]]` : '';
     }
     let fCode = false;
@@ -62,10 +55,10 @@ module.exports = function({
     return out;
   }
 
-  story.info('extract-docs', `Reading ${chalk.cyan.bold(templateFile)}...`);
+  log(`Reading ${chalk.cyan.bold(templateFile)}...`);
   const template = fs.readFileSync(templateFile, 'utf8');
 
-  story.info('extract-docs', 'Collecting the pieces...');
+  log('Collecting the pieces...');
   const segments = template.split(/\[\[\[([\s\S]+?)\]\]\]/m);
   let out = '';
   for (let i = 0; i < segments.length; i++) {
@@ -86,12 +79,12 @@ module.exports = function({
   if (stdout) {
     console.log(out);
   } else if (output != null) {
-    story.info('extract-docs', `Writing ${chalk.cyan.bold(output)}...`);
+    log(`Writing ${chalk.cyan.bold(output)}...`);
     fs.writeFileSync(output, out, 'utf8');
   }
 
-  story.info('extract-docs', 'Done');
-  story.close();
-
+  log('Done');
   return out;
 };
+
+module.exports = process;
