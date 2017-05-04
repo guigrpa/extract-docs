@@ -31,8 +31,13 @@ const process = ({
     let out = '';
     for (const line0 of lines) {
       let line = line0.trim();
-      if (line === '/* --' || (line.indexOf('/* --') === 0 && line.indexOf('START_DOCS') >= 0)) {
+      if (line === '/* --') {
         fBlockComment = true;
+        continue;
+      }
+      if ((line.indexOf('/* --') === 0 || line.indexOf('// --') === 0) && line.indexOf('START_DOCS') >= 0) {
+        fBlockComment = true;
+        out += '```js\n';
         continue;
       }
 
@@ -40,7 +45,11 @@ const process = ({
       if (line === '-- */' ||
           (fBlockComment && line.indexOf('END_DOCS') >= 0) ||
           (!fBlockComment && (!line.length || line.indexOf('// --') !== 0))) {
-        if (!fCode && line.indexOf('END_DOCS') < 0) out += '\n';
+        if (line.indexOf('END_DOCS') >= 0) {
+          out += '```\n';
+        } else if (!fCode) {
+          out += '\n';
+        }
         fCode = true;
         fBlockComment = false;
         continue;
