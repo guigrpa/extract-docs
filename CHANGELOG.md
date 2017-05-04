@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.5.0 (May. 4, 2017)
+## 1.5.0, 1.5.1 (May. 4, 2017)
 
 * Add START_DOCS and END_DOCS placeholders to allow code to also be used as docs (welcome, Flow!).
 

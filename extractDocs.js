@@ -40,7 +40,7 @@ const process = ({
       if (line === '-- */' ||
           (fBlockComment && line.indexOf('END_DOCS') >= 0) ||
           (!fBlockComment && (!line.length || line.indexOf('// --') !== 0))) {
-        if (!fCode) out += '\n';
+        if (!fCode && line.indexOf('END_DOCS') < 0) out += '\n';
         fCode = true;
         fBlockComment = false;
         continue;
