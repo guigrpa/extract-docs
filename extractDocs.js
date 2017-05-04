@@ -9,10 +9,11 @@ let fLogs = true;
 const log = (msg) => { if (fLogs) console.log(msg); };
 
 const process = ({
-  template: templateFile,
-  stdout, output,
-  missingRefs,
-  skipConditional,
+  template: templateFile, // template file path
+  stdout,  // print to stdout?
+  output,  // output file path
+  missingRefs,  // keep broken links in output?
+  skipConditional,  // skip conditional inserts?
 }) => {
   if (stdout) fLogs = false;
 
@@ -30,13 +31,14 @@ const process = ({
     let out = '';
     for (const line0 of lines) {
       let line = line0.trim();
-      if (line === '/* --') {
+      if (line === '/* --' || (line.indexOf('/* --') === 0 && line.indexOf('START_DOCS') >= 0)) {
         fBlockComment = true;
         continue;
       }
 
       // End of comment block
       if (line === '-- */' ||
+          (fBlockComment && line.indexOf('END_DOCS') >= 0) ||
           (!fBlockComment && (!line.length || line.indexOf('// --') !== 0))) {
         if (!fCode) out += '\n';
         fCode = true;

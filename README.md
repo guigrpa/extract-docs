@@ -12,7 +12,7 @@ $ npm install --save-dev extract-docs
 
 ## Usage
 
-Use this tiny tool to extract comments from your JS code and insert them in a template. The template would look like this:
+Use this tiny tool to extract comments from your JS code and insert them in a template. The **template** would look like this:
 
 ```
 Bla bla bla...
@@ -22,7 +22,7 @@ Bla bla bla...
 Bla bla bla...
 ```
 
-And your comments in `./lib/myLib.js` should look like this (note the `--` prefix):
+And your **comments** in `./lib/myLib.js` should look like this (note the `--` prefix):
 
 ```js
 // -- ## foo()
@@ -33,7 +33,7 @@ export function foo() {
 }
 ```
 
-Alternatively, for long blocks:
+You can also use **block comments**:
 
 ```js
 /* --
@@ -46,6 +46,17 @@ export function foo() {
 }
 ```
 
+Or if you want to re-use **code as documentation**:
+
+```js
+/* -- START_DOCS -- */
+type Options = {
+  height?: number,
+  width?: number,
+};
+/* -- END_DOCS -- */
+```
+
 Run the tool as follows:
 
 ```bash
@@ -55,7 +66,7 @@ $ extract-docs --template README_TEMPLATE.md --output README.md
 
 ## MIT license
 
-Copyright (c) [Guillermo Grau Panea](https://github.com/guigrpa) 2016-
+Copyright (c) [Guillermo Grau Panea](https://github.com/guigrpa) 2016-present
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -24,7 +24,7 @@
     "url": "git+https://github.com/guigrpa/extract-docs.git"
   },
   "scripts": {
-    "build": "node package && npm run lint",
+    "build": "npm run lint",
     "lint": "eslint extractDocs.js"
   },
   "dependencies": {

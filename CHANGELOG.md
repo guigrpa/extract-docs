@@ -1,9 +1,12 @@
 # Changelog
 
-* Add conditional contents.
+## 1.5.0 (May. 4, 2017)
+
+* Add START_DOCS and END_DOCS placeholders to allow code to also be used as docs (welcome, Flow!).
 
 ## 1.4.0 (Jan. 20, 2017)
 
+* Add conditional contents.
 * Remove unnecessary dependencies.
 
 ## 1.2.0, 1.3.0 (May. 30, 2016)
