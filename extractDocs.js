@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 
 let fLogs = true;
@@ -13,11 +14,13 @@ const process = ({
   stdout,  // print to stdout?
   output,  // output file path
   missingRefs,  // keep broken links in output?
+  basePath = '.', // reference dir for solving paths
   skipConditional,  // skip conditional inserts?
 }) => {
   if (stdout) fLogs = false;
 
-  function getDocs(srcPath) {
+  function getDocs(srcPath0) {
+    const srcPath = path.join(basePath, srcPath0);
     log(`Processing ${chalk.yellow.bold(srcPath)}...`);
     let lines;
     try {

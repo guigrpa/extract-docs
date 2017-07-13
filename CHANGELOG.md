@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0 (Jul. 13, 2017)
+
+* Add `basePath` option.
+
 ## 1.5.0, 1.5.1 (May. 4, 2017)
 
 * Add START_DOCS and END_DOCS placeholders to allow code to also be used as docs (welcome, Flow!).
