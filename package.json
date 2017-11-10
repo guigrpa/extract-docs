@@ -1,6 +1,6 @@
 {
   "name": "extract-docs",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A simple CLI tool to gather documentation from JS code",
   "bin": {
     "extract-docs": "cli.js"
