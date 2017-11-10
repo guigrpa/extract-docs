@@ -1,3 +1,5 @@
+## 1.6.1 (2017-11-10)
+
 * Remove `#!/usr/bin/env node` line from non-CLI interface.
 
 ## 1.6.0 (Jul. 13, 2017)
