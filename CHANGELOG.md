@@ -1,4 +1,4 @@
-# Changelog
+* Remove `#!/usr/bin/env node` line from non-CLI interface.
 
 ## 1.5.0, 1.5.1 (May. 4, 2017)
 
